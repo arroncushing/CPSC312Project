@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Contacts</string>
+    <string name="add_contact">Add New Contact</string>
+    <string name="call">Call</string>
+    <string name="email">eMail: </string>
+    <string name="email_send">eMail</string>
+    <string name="example_email_address">examplename@example.com</string>
+    <string name="example_name">Example Name</string>
+    <string name="example_phone_number">###-###-####</string>
+    <string name="name">Name: </string>
+    <string name="placeholder_name">Placeholder Name</string>
+    <string name="phone_number">Phone Number: </string>
+    <string name="save_contact">Save Contact</string>
 </resources>

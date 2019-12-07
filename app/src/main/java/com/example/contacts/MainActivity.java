@@ -59,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("name", "");
                 intent.putExtra("phoneNumber", "");
                 intent.putExtra("emailAddress", "");
+                intent.putExtra("id", -1);
 
-                startActivity(intent);
+                startActivityForResult(intent, NEW_CONTACT_LOGIN_REQUEST_CODE);
             }
         });
 
@@ -68,10 +69,12 @@ public class MainActivity extends AppCompatActivity {
         contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, EditActivity.class);
-                intent.putExtra("sendName", testContact.getName());
-                intent.putExtra("sendPhoneNumber", testContact.getPhoneNumber());
-                intent.putExtra("sendEMail", testContact.geteMail());
+                Contact contact = contactOpenHelper.getSelectContactById(id);
+
+                Intent intent = new Intent(MainActivity.this, ContactActivity.class);
+                intent.putExtra("sendName", contact.getName());
+                intent.putExtra("sendPhoneNumber", contact.getPhoneNumber());
+                intent.putExtra("sendEMail", contact.geteMail());
                 startActivity(intent);
             }
         });
@@ -100,11 +103,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("name", contact.getName());
                 intent.putExtra("phoneNumber", contact.getPhoneNumber());
                 intent.putExtra("emailAddress", contact.geteMail());
+                intent.putExtra("id", id);
 
-                startActivity(intent);
-
-                Cursor newCursor1 = contactOpenHelper.getSelectAllContactsCursor();
-                cursorAdapter.changeCursor(newCursor1);
+                startActivityForResult(intent, EDIT_CONTACT_LOGIN_REQUEST_CODE);
                 return true;
             case R.id.delete:
                 contactOpenHelper.deleteContactById(id);
@@ -112,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 cursorAdapter.changeCursor(newCursor2);
                 return true;
 
-                default:
-                    return super.onContextItemSelected(item);
+            default:
+                return super.onContextItemSelected(item);
         }
     }
 
