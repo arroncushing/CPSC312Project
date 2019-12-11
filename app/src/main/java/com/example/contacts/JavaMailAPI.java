@@ -13,6 +13,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * Sets up the Java mail API, which allows for an email to be sent using a user's personal GMail account
+ */
+
 public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
     //Add those line in dependencies

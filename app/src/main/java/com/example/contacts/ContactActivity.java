@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Handles the interaction with an established Contact and allows the user to use the calling, email, and location functions regarding that contact
+ */
+
 public class ContactActivity extends AppCompatActivity {
 
     @Override
@@ -26,7 +30,7 @@ public class ContactActivity extends AppCompatActivity {
         String address = "placeholder address";
 
         Intent intent = getIntent();
-        if (intent != null) {
+        if (intent != null) { // get the data sent from MainActivity
             name = intent.getStringExtra("sendName");
             phoneNumber = intent.getStringExtra("sendPhoneNumber");
             eMail = intent.getStringExtra("sendEMail");
@@ -41,6 +45,7 @@ public class ContactActivity extends AppCompatActivity {
         Button eMailButton = (Button) findViewById(R.id.eMailButton);
         Button addressButton = (Button) findViewById(R.id.addressButton);
 
+        // sets the text in the text view to the person's name, placeholder values used if new contact
         displayNameTextView.setText(name);
         displayPhoneNumberTextView.setText(phoneNumber);
         displayEMailTextView.setText(eMail);

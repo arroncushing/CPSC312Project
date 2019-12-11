@@ -19,6 +19,18 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+/**
+ * This program handles a "master contact list", which contains a phone number which can be called,
+ * an email address to which an email can be sent to, and a location, which can be looked up through Google Maps.
+ * Stores the data through SQLite
+ *
+ * MainActivity initializes the SQLite table and cursor, displays the contact list, and allows for new contacts to be added
+ * CPSC 312, Fall 2019
+ *
+ * @author Daniel Weaver, Arron Cushing
+ * @version 1.0
+ */
+
 public class MainActivity extends AppCompatActivity {
     static final String TAG = "MainActivityTag";
     static final int NEW_CONTACT_LOGIN_REQUEST_CODE = 1; // use this as the login request code when adding a new contact
@@ -34,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         contactOpenHelper = new ContactOpenHelper(this);
-        //Contact testContact = new Contact("Daniel Weaver", "408-220-3141", "dcweaver510@gmail.com", "1461 Bedford Avenue, Sunnyvale CA");
-        //contactOpenHelper.insertContact(testContact);
         cursor = contactOpenHelper.getSelectAllContactsCursor();
 
         Button addNewContactButton = (Button) findViewById(R.id.addNewContactButton);
