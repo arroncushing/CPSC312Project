@@ -7,17 +7,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class ContactOpenHelper extends SQLiteOpenHelper {
-    static final private String TAG = "ContactOpenHelperTag";
+    static final String TAG = "ContactOpenHelperTag";
 
-    static final private String DATABASE_NAME = "contactsDatabase";
-    static final private int DATABASE_VERSION = 1;
+    static final String DATABASE_NAME = "contactsDatabase";
+    static final int DATABASE_VERSION = 1;
 
-    static final private String TABLE_CONTACTS = "tableContacts";
-    static final private String ID = "_id";
+    static final String TABLE_CONTACTS = "tableContacts";
+    static final String ID = "_id";
     static final String NAME = "name";
-    static final private String PHONE_NUMBER = "phoneNumber";
-    static final private String EMAIL = "eMail";
-    static final private String ADDRESS = "address";
+    static final String PHONE_NUMBER = "phoneNumber";
+    static final String EMAIL = "eMail";
+    static final String ADDRESS = "address";
 
     public ContactOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,7 +29,7 @@ public class ContactOpenHelper extends SQLiteOpenHelper {
                 "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 NAME + " TEXT, " +
                 PHONE_NUMBER + " TEXT, " +
-                EMAIL + " TEXT" +
+                EMAIL + " TEXT," +
                 ADDRESS + " TEXT" + ")";
         Log.d(TAG, "onCreate: " + sqlCreate);
 
@@ -47,7 +47,7 @@ public class ContactOpenHelper extends SQLiteOpenHelper {
                 contact.getName() + "', '" +
                 contact.getPhoneNumber() + "', '" +
                 contact.geteMail() + "', '" +
-                contact.getAddress() + " ')";
+                contact.getAddress() + "')";
         Log.d(TAG, "insertContact: " + sqlInsert);
 
 
@@ -90,7 +90,7 @@ public class ContactOpenHelper extends SQLiteOpenHelper {
                 NAME + "='" + contact.getName() + "', " +
                 PHONE_NUMBER + "='" + contact.getPhoneNumber() + "', " +
                 EMAIL + "='" + contact.geteMail() + "', " +
-                ADDRESS + "'='" + contact.getAddress() + "' WHERE " +
+                ADDRESS + "='" + contact.getAddress() + "' WHERE " +
                 ID + "=" + id;
         Log.d(TAG, "updateContactById: " + sqlUpdate);
 

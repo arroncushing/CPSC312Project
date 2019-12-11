@@ -11,12 +11,15 @@
         android:id="@+id/addNewContactButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_contact" />
+        android:text="@string/add_contact"
+        style="@style/Widget.AppCompat.Button.Borderless"/>
 
     <ListView
         android:id="@+id/contactListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

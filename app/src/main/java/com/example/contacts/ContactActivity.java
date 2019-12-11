@@ -16,6 +16,10 @@ public class ContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
 
+        // add back button to action bar
+        assert getSupportActionBar() != null;   // null check
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);   // show back button
+
         String name = "placeholder name";
         String phoneNumber = "###-###-####";
         String eMail = "examplename@example.com";
@@ -29,20 +33,18 @@ public class ContactActivity extends AppCompatActivity {
             address = intent.getStringExtra("sendAddress");
         }
 
-        //TODO: implement address buttons functionality
-
         TextView displayNameTextView = (TextView) findViewById(R.id.displayNameTextView);
         TextView displayPhoneNumberTextView = (TextView) findViewById(R.id.displayPhoneNumberTextView);
         TextView displayEMailTextView = (TextView) findViewById(R.id.displayEMailTextView);
-        //TextView displayAddressTextView = (TextView) findViewById(R.id.displayAddressTextView);
+        TextView displayAddressTextView = (TextView) findViewById(R.id.displayAddressTextView);
         Button callButton = (Button) findViewById(R.id.callButton);
         Button eMailButton = (Button) findViewById(R.id.eMailButton);
-        //Button addressButton = (Button) findViewById(R.id.addressButton);
+        Button addressButton = (Button) findViewById(R.id.addressButton);
 
         displayNameTextView.setText(name);
         displayPhoneNumberTextView.setText(phoneNumber);
         displayEMailTextView.setText(eMail);
-        //displayAddressTextView.setText(address);
+        displayAddressTextView.setText(address);
 
         // uses an Intent to make a call with the phone number
         final String dial = "tel:" + phoneNumber;
@@ -69,6 +71,23 @@ public class ContactActivity extends AppCompatActivity {
             }
         });
 
-        //TODO: add address action functionality
+        // uses an Intent to find the address on Google Maps
+        final String findAddress = address;
+        addressButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri mapUri = Uri.parse("geo:0,0?q=" + Uri.encode(findAddress));
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
+    }
+
+    // back button returns user to previous activity
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }
